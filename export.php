@@ -13,7 +13,7 @@
 require_once('_app_env.php');
 include('include/utils.php');
 require_once('classes/Request.php');
-require_once('classes/Dispatcher.php');
+require_once('classes/Controller.php');
 
 $controller = new Controller();
 $controller->process();
