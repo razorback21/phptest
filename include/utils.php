@@ -12,7 +12,7 @@ use Illuminate\Support;
  *     otherwise true or false for insert/update/delete success
  */
 function query($sql) {
-    // Since there is alot of code to change in the whole application. We can just create an alias here
+    // Since there is a lot of code to change in the whole application. We can just create an alias here
     return MysqlDB::getInstance()->query($sql);
 }
 

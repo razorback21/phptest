@@ -10,21 +10,10 @@
  * https://laravel.com/docs/5.8/collections
  */
 
- use Illuminate\Support;
-
-// prepare the request & process the arguments
 require_once('_app_env.php');
 include('include/utils.php');
-require_once('vendor/autoload.php');
-require_once('classes/Controller.php');
+require_once('classes/Request.php');
+require_once('classes/Dispatcher.php');
 
-// process the args
-$args = collect($_REQUEST);
-$format = $args->pull('format') ?: 'html';
-$type = $args->pull('type');
-if (!$type) {
-    exit('Please specify a type');
-}
-
-$controller = new Controller($args);
-echo $controller->export($type, $format);
+$controller = new Controller();
+$controller->process();

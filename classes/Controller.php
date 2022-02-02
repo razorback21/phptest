@@ -1,12 +1,13 @@
 <?php
 use Illuminate\Support;  // https://laravel.com/docs/5.8/collections - provides the collect methods & collections class
-use LSS\Array2Xml;
 require_once('classes/Exporter.php');
+require_once ('classes/IController.php');
 
-class Controller {
+class Controller extends Request implements IController {
 
-    public function __construct($args) {
-        $this->args = $args;
+    public function __construct() {
+        parent::__construct();
+        $this->args = $this->requestCollection;
     }
 
     public function export($type, $format) {
@@ -34,5 +35,16 @@ class Controller {
             return in_array($key, $searchArgs);
         });
         return $search;
+    }
+
+    public function process() {
+        $format = $this->getVar('format') ?: 'html';
+        $type = $this->getVar('type');
+
+        if (!$type) {
+            exit('Please specify a type');
+        }
+
+        echo $this->export($type, $format);
     }
 }
