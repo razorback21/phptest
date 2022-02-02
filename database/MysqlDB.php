@@ -1,9 +1,10 @@
 <?php
 
 class MysqlDB {
-    protected $mysqli_db;
+
     private static $instance = null;
     protected $connect;
+    protected $mysqli_db;
 
     private function __construct() {
         $this->connect = $this->connectToDB();
